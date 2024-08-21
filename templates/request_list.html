@@ -1,0 +1,133 @@
+{% extends "index.html" %}
+
+
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Welcome to HelpBridge</h2>
+
+    <div class="row">
+        <!-- User Profile Section on the Left -->
+        <div class="col-md-3">
+            <div class="card shadow-lg mb-4">
+                <!-- Header Section -->
+                <div class="bg-dark text-white p-4 rounded-top">
+                    <div class="d-flex align-items-center">
+                        <img src="{{ profile.profile_image.url }}" alt="Profile Image" 
+                             class="img-thumbnail rounded-circle border border-white shadow-sm" 
+                             style="width: 100px; height: 100px;">
+                        <div class="ms-3">
+                            <h4 class="text-white mb-1">{{ user.first_name }} {{ user.last_name }}</h4>
+                            <h6 class="text-light">{{ user.username }}</h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- Information Section -->
+                <div class="p-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6 class="text-secondary"><i class="fas fa-envelope"></i> Email:</h6>
+                            <p class="text-white">{{ user.email }}</p>
+                        </div>
+                        <div class="col-md-12">
+                            <h6 class="text-secondary"><i class="fas fa-phone"></i> Phone Number:</h6>
+                            <p class="text-white">{{ profile.phone_no }}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <h6 class="text-secondary"><i class="fas fa-info-circle"></i> Bio:</h6>
+                    <p class="text-white">{{ profile.bio }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Section in the Center -->
+        <div class="col-md-6">
+            <div class="text-center mb-4">
+                <a class="btn btn-outline-light btn-lg" href="{% url 'create_request' %}" style="background-color: #2d4b2d; border-color: #2d4b2d;">
+                    Post Request
+                </a>
+            </div>
+
+            <div class="d-flex flex-column align-items-center">
+                {% for d in data %}
+                    <div class="card mb-4" style="width: 100%; max-width: 600px;">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center rounded shadow-sm mb-1">
+                                
+                                <div>
+                                    <h5 class="card-subtitle">{{ d.user.first_name }} {{ d.user.last_name }}</h5>
+                                    <p class="mb-0 text-muted">{{ d.user.username }}</p>
+                                </div>
+                            </div>
+                            <h4 class="card-title">{{ d.title }}</h4>
+                            <p class="card-text">
+                                {% if d.description|length > 250 %}
+                                    {{ d.description|slice:":250" }}...
+                                    <span class="more-text">{{ d.description|slice:"250:" }}</span>
+                                    <span class="see-more" onclick="toggleText(this)">See More</span>
+                                {% else %}
+                                    {{ d.description }}
+                                {% endif %}
+                            </p>
+                        </div>
+                        <img src="{{ d.image.url }}" class="card-img-top" style="height: 300px;" alt="image">
+                        <div class="card-body d-flex justify-content-between">
+                            {% if d.user == user %}
+                                {% if d.is_fulfilled %}
+                                    <a href="{% url 'offer_help_details' d.id %}" class="btn btn-dark text-secondary border-secondary">✔ Request Fulfilled</a>
+                                    <a href="{% url 'delete_request' d.id %}" class="btn btn-dark text-danger border-danger">🗑 Delete</a>
+                                    <a href="{% url 'request_history' d.id %}" class="btn btn-dark text-info border-info">📜 View History</a>
+                                {% else %}
+                                    <a href="{% url 'edit_request' d.id %}" class="btn btn-dark text-warning border-warning">✏️ Edit</a>
+                                    <a href="{% url 'delete_request' d.id %}" class="btn btn-dark text-danger border-danger">🗑 Delete</a>
+                                    <a href="{% url 'request_history' d.id %}" class="btn btn-dark text-info border-info">📜 View History</a>
+                                {% endif %}
+                            {% else %}
+                                {% if d.is_fulfilled %}
+                                    <a href="{% url 'offer_help_details' d.id %}" class="btn btn-dark text-secondary border-secondary">✔ Request Fulfilled</a>
+                                {% else %}
+                                    <a href="{% url 'offer_help' d.id %}" class="btn btn-dark text-success border-success">🤝 Offer Help</a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Notifications Section on the Right -->
+        <div class="col-md-3">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-3">Your Notifications</h4>
+                    {% if notifications %}
+                        <div class="list-group">
+                            {% for notification in notifications %}
+                                <div class="list-group-item d-flex justify-content-between align-items-center {% if not notification.is_read %}list-group-item-info{% else %}list-group-item-light{% endif %}">
+                                    <div>
+                                        <p class="mb-1">{{ notification.content }}</p>
+                                        <small class="text-muted">{{ notification.created_at|date:"F j, Y, g:i a" }}</small>
+                                    </div>
+                                    <div>
+                                        {% if not notification.is_read %}
+                                            <a href="{% url 'mark_notification_as_read' notification.id %}" class="btn btn-outline-success btn-sm">Mark as Read</a>
+                                        {% else %}
+                                            <span class="badge bg-success">Read</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning text-center" role="alert">
+                            No notifications.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock  %}

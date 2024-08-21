@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card p-4">
+        <h4 class="my-4 text-sure">{{ details.message }}</h4>
+        {% if details.accepted %}
+            <div class="alert alert-success" role="alert">
+                Request Accepted
+            </div>
+        {% else %}
+            <div class="alert alert-info" role="alert">
+                Request Not Accepted
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock  %}
+

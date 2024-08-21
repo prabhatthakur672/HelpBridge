@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="text-center mt-5">
+    <h2 class="text-warning">Logged Out</h2>
+    <p class="text-white">
+        You have been logged out.
+        <a href="{% url 'login' %}" class="btn btn-outline-success ms-2">Login here</a>
+    </p>
+</div>
+
+{% endblock  %}

@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card p-4 mb-4">
+        <h3 class="card-title mb-2">{{ help_request.title }}</h3>
+        
+        <h4 class="text-muted mt-4">Viewed by {{ view_count }} users</h4>
+        {% if help_request.is_fulfilled %}
+            <h5 class="text-success">Status: Request Fulfilled</h5>
+        {% else %}
+            <h5 class="text-danger">Status: Request Not Fulfilled</h5>
+        {% endif %}
+    </div>
+
+    <div class="card p-4">
+        <h2 class="card-title">History</h2>
+        {% if history %}
+            <ul class="list-group">
+                {% for entry in history %}
+                    <li class="list-group-item">
+                        <strong>{{ entry.status_change }}</strong> - {{ entry.timestamp }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted">No history available.</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock  %}

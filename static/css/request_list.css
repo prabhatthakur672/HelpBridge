@@ -1,0 +1,7 @@
+.more-text {
+    display: none;
+}
+.see-more {
+    color: rgb(150, 150, 246);
+    cursor: pointer;
+}

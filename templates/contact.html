@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+
+{% block content  %}
+<header class="bg-success text-white text-center py-5 rounded">
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p class="lead">We'd love to hear from you!</p>
+    </div>
+</header>
+
+<!-- Contact Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <h2 class="text-success">Get in Touch</h2>
+                <p>If you have any questions, suggestions, or need assistance, please don't hesitate to reach out to us. We are here to help and support you.</p>
+                <ul class="list-unstyled">
+                    <li><strong>Email:</strong> <a href="https://mail.google.com/" class="text-success">prabhatthakur672@gmail.com</a></li>
+                    <li><strong>Phone:</strong> <a href="tel:+1234567890" class="text-success">+91 9696399698</a></li>
+                    <li><strong>Address:</strong> Lucknow, Uttar Pradesh, India</li>
+                </ul>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <h2 class="text-success">Send Us a Message</h2>
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Your Name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Your Email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" rows="5" placeholder="Your Message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock  %}

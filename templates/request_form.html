@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+
+
+
+<h2 class="text-center mt-3">
+    {% if form.instance.pk %}
+        Edit Tweet
+    {% else %}
+        Create tweet
+    {% endif %}
+</h2>
+
+{% block content %}
+    
+    <form method="post" enctype="multipart/form-data" class="form mt-3" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-success" type="submit" style="background-color: #4CAF50; border-color: #388E3C; color: #fff; padding: 10px 20px; font-weight: bold;">
+            Submit
+        </button>
+    </form>
+    <a href="{% url 'request_list' %}" style="color: #4CAF50; text-decoration: none; font-weight: bold; margin-top: 10px; display: inline-block;">
+        &larr; Back
+    </a>
+{% endblock  %}
