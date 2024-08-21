@@ -77,7 +77,7 @@ You can now access the application at `http://127.0.0.1:8000/`.
 
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE file](https://github.com/prabhatthakur672/HelpBridge/blob/main/LICENSE.txt) for details.
 
 ## Contact
 For any questions or feedback, please reach out to prabhatthakur672@gmail.com.
