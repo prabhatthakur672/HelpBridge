@@ -64,14 +64,19 @@ You can now access the application at `http://127.0.0.1:8000/`.
 # Project Screenshots
 
 ![image](https://github.com/user-attachments/assets/a13d224c-8795-4a08-818d-d46fa44918ef)
+
 ![image](https://github.com/user-attachments/assets/a81d0e9b-8baf-40e9-9652-b6e6b282ccc5)
+
 ![image](https://github.com/user-attachments/assets/2aa28879-a561-431a-97ab-9cf23aef8b33)
+
 ![image](https://github.com/user-attachments/assets/db3ac960-989b-48e7-a783-f66e19181e91)
+
 ![image](https://github.com/user-attachments/assets/1589f3ac-cfd6-455f-8fee-cb66313ac62d)
+
 ![image](https://github.com/user-attachments/assets/9f157242-e70c-4514-a700-9b6ac68c82a2)
 
 
-License
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Contact
